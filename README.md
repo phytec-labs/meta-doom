@@ -48,9 +48,16 @@ other layers needed. e.g.:
     /path/to/yocto/meta \
     /path/to/yocto/meta-poky \
     /path/to/yocto/meta-yocto-bsp \
-    /path/to/yocto/meta-meta-doom \
+    /path/to/yocto/meta-doom \
     "
 
+Edit you build/local.conf and add the following:
+
+  IMAGE_INSTALL:append = " \
+    freedoom \
+    chocolatedoom \
+    libsdl-net \
+  "
 
 ## II. Misc
 
