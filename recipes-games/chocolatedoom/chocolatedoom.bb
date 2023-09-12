@@ -4,6 +4,8 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING.md;md5=60d644347832d2dd9534761f6919e2a6"
 SECTION = "games"
 
+IMAGE_FEATURES += "x11-base"
+
 SRC_URI = "git://github.com/chocolate-doom/chocolate-doom.git;protocol=https;branch=master"
 SRCREV = "${AUTOREV}"
 
