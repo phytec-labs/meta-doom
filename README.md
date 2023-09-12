@@ -51,17 +51,25 @@ other layers needed. e.g.:
     /path/to/yocto/meta-doom \
     "
 
-Edit you build/local.conf and add the following:
+Edit youre build/local.conf and add the following:
 
+```sh
   IMAGE_INSTALL:append = " \
     freedoom \
     chocolatedoom \
     libsdl-net \
   "
+```
 
 ## II. Misc
 
 This layer provides the aarch64 version of Freedoom and compiles a version of the Chocolate-doom game engine, a fork of the original doom engine used for the 90's game. The meta-layer also provides Freedoom as free to use game assets. Combined t provides a free-to-play implementation of doom. You may also want to add your own WAD files through your own recipes.
+
+#### To Launch
+
+``` sh
+  DISPLAY=:0 chocolate-doom
+```
 
 *Note: Get a [shareware WAD](http://www.pc-freak.net/files/doom-wad-files/Doom1.WAD) if you don't own the game.*
 
