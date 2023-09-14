@@ -1,14 +1,12 @@
 This README file contains information on the contents of the
 meta-doom layer.
 
-Please see the corresponding sections below for details.
-
-## Originally based off of the following project:
+### Freedoom recipe originally from this project:
 https://github.com/geoffrey-vl/meta-doom
 
-- Full Re-write of the chocolatedoom recipe to compile from source
-- Update Freedoom to choose the correct architechture.
-- Made compatible with Kirkstone.
+### Video output learned from this project:
+https://gitlab.com/bguan/meta-doom
+
 
 Dependencies
 ============
@@ -44,33 +42,69 @@ yocto build tree, you can add it to the build system by adding the
 location of the meta-doom layer to bblayers.conf, along with any
 other layers needed. e.g.:
 
-  BBLAYERS ?= " \
-    /path/to/yocto/meta \
-    /path/to/yocto/meta-poky \
-    /path/to/yocto/meta-yocto-bsp \
-    /path/to/yocto/meta-doom \
-    "
+```sh
+BBLAYERS ?= " \
+  /path/to/yocto/meta \
+  /path/to/yocto/meta-poky \
+  /path/to/yocto/meta-yocto-bsp \
+  /path/to/yocto/meta-doom \
+  "
+```
 
 Edit youre build/local.conf and add the following:
 
 ```sh
-  IMAGE_INSTALL:append = " \
-    freedoom \
-    chocolatedoom \
-    libsdl-net \
-  "
+IMAGE_INSTALL:append = " \
+  freedoom \
+  chocolate-doom \
+  libsdl-net \
+"
 ```
 
-## II. Misc
+### DirectFB (framebuffer)
+Append the following lines to your `local.conf`.
 
-This layer provides the aarch64 version of Freedoom and compiles a version of the Chocolate-doom game engine, a fork of the original doom engine used for the 90's game. The meta-layer also provides Freedoom as free to use game assets. Combined t provides a free-to-play implementation of doom. You may also want to add your own WAD files through your own recipes.
+```sh
+MACHINE ?= "phyboard-lyra-am62xx-2"
 
-#### To Launch
+DISTRO_FEATURES:append = " directfb"
+DISTRO_FEATURES:remove = "x11"
 
-``` sh
-  DISPLAY=:0 chocolate-doom
+# WORKAROUND: DirectFB libraries are not installed although libsdl2 has it in its DEPENDS.
+IMAGE_INSTALL:append = " directfb"
 ```
 
-*Note: Get a [shareware WAD](http://www.pc-freak.net/files/doom-wad-files/Doom1.WAD) if you don't own the game.*
+### X11
+Append the following lines to your `local.conf`.
 
-![Freedoom Screenshot](freedoom.png)
+```sh
+MACHINE ?= "phyboard-lyra-am62xx-2"
+
+IMAGE_FEATURES += "x11-base"
+```
+
+## Build
+
+Source build environment and build _phytec-headless-image_.
+
+```sh
+cd poky
+source oe-init-build-env
+bitbake phytec-headless-image
+```
+
+**Note:** Because of a so far unknown reason the DirectFB libraries are not installed even though _libsdl2_ has _directfb_ in its DEPENDS as well as in its PACKAGECONFIG. Manually adding _directfb_ installs the libraries.
+
+## Run
+
+### DirectFB (framebuffer)
+
+```
+chocolate-doom
+```
+
+### X11
+
+```
+DISPLAY=:0 chocolate-doom
+```
