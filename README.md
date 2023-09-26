@@ -1,13 +1,6 @@
 This README file contains information on the contents of the
 meta-doom layer.
 
-### Freedoom recipe originally from this project:
-https://github.com/geoffrey-vl/meta-doom
-
-### Video output learned from this project:
-https://gitlab.com/bguan/meta-doom
-
-
 Dependencies
 ============
 
@@ -108,3 +101,11 @@ chocolate-doom
 ```
 DISPLAY=:0 chocolate-doom
 ```
+
+# Credits / Inspiration
+### Freedoom recipe modified from this project:
+https://github.com/geoffrey-vl/meta-doom
+
+### Video output learned from this project:
+https://gitlab.com/bguan/meta-doom
+
