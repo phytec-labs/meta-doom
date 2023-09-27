@@ -1,5 +1,5 @@
-This README file contains information on the contents of the
-meta-doom layer.
+Begin by cloning this repo into the '/sources' directory of your Yocto project.
+Make sure to check out the appropriate branch for your version of Yocto.
 
 Dependencies
 ============
